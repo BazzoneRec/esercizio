@@ -1,6 +1,6 @@
 var fetch = require("node-fetch");
 
-const url = "http://localhost:3000";
+const url = "https://eserciziois.herokuapp.com";
 
 var assignment1 = {
 	taskID : "task01",
