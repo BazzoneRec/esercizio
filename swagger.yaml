@@ -1,12 +1,12 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: "apiassignments"
-  description: Polls is a simple API allowing consumers to view polls and vote in them.
+  title: "Assignments"
+  description: Gestione Assignments
   license:
     name: MIT
     url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
-host: polls.apiblueprint.org
+host: eserciziois.herokuapp.com
 basePath: /
 schemes:
 - http
@@ -15,106 +15,62 @@ consumes:
 produces:
 - application/json
 paths:
-  /questions:
-    x-summary: Questions Collection
+  /assignments:
+    x-summary: Assignments Collection
     get:
-      summary: List All Questions
+      summary: List All Assignments
       responses:
         200:
           description: Successful Response
           schema:
             type: array
             items:
-              $ref: '#/definitions/Question'
+              $ref: '#/definitions/Assignment'
           examples:
             application/json:
-              - question: Favourite programming language?
-                published_at: '2015-08-05T08:40:51.620Z'
-                choices:
-                  - choice: Swift
-                    votes: 2048
-                  - choice: Python
-                    votes: 1024
-                  - choice: Objective-C
-                    votes: 512
-                  - choice: Ruby
-                    votes: 256
-    post:
-      description: >-
-        You may create your own question using this action. It takes a JSON
-        object containing a question and a collection of answers in the
-        form of choices.
-      summary: Create a New Question
-      parameters:
-        - name: body
-          in: body
-          required: true
+              - taskID: eqweqweqweqw
+                assignmentID: dqweqweqweqweqweqwe
+                workerID: qweqweqweqwe
+                assignmentResult: {}
+        404:
+          description: Non sono presenti assignments
+  /assignments/assignmentID:
+    x-summary: A single assignments
+    get:
+      summary: Return an assignment
+      responses:
+        200:
+          description: Succesful response
           schema:
-            $ref: '#/definitions/QuestionRequest'
+            $ref: '#/definitions/Assignment'
+          examples:
+            application/json:
+              taksID: qweqweqweqwe
+              asssignmentID: wdqwdqwdqwd
+              workerID: qweqweqweqweqw
+              assignmentResult: {}
+        404:
+          description: L'assignment non esiste
+    post:
+      summary: Create a new assignment
       responses:
         201:
-          description: ''
+          description: Successful response
           schema:
-            $ref: '#/definitions/Question'
-          examples:
-            application/json:
-                question: Favourite programming language?
-                published_at: '2015-08-05T08:40:51.620Z'
-                choices:
-                  - choice: Swift
-                    votes: 0
-                  - choice: Python
-                    votes: 0
-                  - choice: Objective-C
-                    votes: 0
-                  - choice: Ruby
-                    votes: 0
+            $ref: '#/definitions/Assignment'
+          
+  
+          
 definitions:
-  Question:
-    title: Question
+  Assignment:
+    title: Assignment
     type: object
     properties:
-      question:
+      taskID:
         type: string
-      published_at:
+      assignmentID:
         type: string
-      choices:
-        type: array
-        items:
-          $ref: '#/definitions/Choice'
-    required:
-      - question
-      - published_at
-      - choices
-  Choice:
-    title: Choice
-    type: object
-    properties:
-      votes:
-        type: integer
-        format: int32
-      choice:
+      workerID:
         type: string
-    required:
-      - votes
-      - choice
-  QuestionRequest:
-    title: Question Request
-    type: object
-    properties:
-      question:
-        type: string
-      choices:
-        type: array
-        items:
-          type: string
-    required:
-      - question
-      - choices
-    example:
-      question: Favourite programming language?
-      choices:
-        - Swift
-        - Python
-        - Objective-C
-        - Ruby
+      assignmentResult:
+        type: object
