@@ -1,0 +1,76 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: "Assignments"
+  description: Gestione Assignments
+  license:
+    name: MIT
+    url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
+host: eserciziois.herokuapp.com
+basePath: /
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /assignments:
+    x-summary: Assignments Collection
+    get:
+      summary: List All Assignments
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Assignment'
+          examples:
+            application/json:
+              - taskID: eqweqweqweqw
+                assignmentID: dqweqweqweqweqweqwe
+                workerID: qweqweqweqwe
+                assignmentResult: {}
+        404:
+          description: Non sono presenti assignments
+  /assignments/assignmentID:
+    x-summary: A single assignments
+    get:
+      summary: Return an assignment
+      responses:
+        200:
+          description: Succesful response
+          schema:
+            $ref: '#/definitions/Assignment'
+          examples:
+            application/json:
+              taksID: qweqweqweqwe
+              asssignmentID: wdqwdqwdqwd
+              workerID: qweqweqweqweqw
+              assignmentResult: {}
+        404:
+          description: L'assignment non esiste
+    post:
+      summary: Create a new assignment
+      responses:
+        201:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Assignment'
+          
+  
+          
+definitions:
+  Assignment:
+    title: Assignment
+    type: object
+    properties:
+      taskID:
+        type: string
+      assignmentID:
+        type: string
+      workerID:
+        type: string
+      assignmentResult:
+        type: object
