@@ -1,6 +1,6 @@
 var fetch = require("node-fetch");
 
-const url = "https://eserciziois.herokuapp.com";
+const url = process.env.SERVER_URL;
 
 var assignment1 = {
 	taskID : "task01",
